@@ -3,6 +3,7 @@ const resultBtn = document.querySelector('#btn-check');
 const resultDiv = document.querySelector('#result');
 const monkeyEmoji = document.querySelector('#monkey');
 const happyFace = document.querySelector('#smile');
+const loader = document.querySelector('.loading')
 resultBtn.addEventListener('click', resultHandler)
 
 function resultHandler(e) {
@@ -33,14 +34,20 @@ function resultHandler(e) {
             const [ctr2, prevDate] = previousPalindromeDate(date);
             
             if (ctr1 > ctr2) {
+                loader.innerHTML='<img src="./src/loader.gif" />';
+                resultDiv.innerText="";
                 setTimeout(() => {
+                    loader.innerText = ""
                     monkeyEmoji.classList.remove('hide')
                     happyFace.classList.add('hide')
                     resultDiv.innerText = `The nearest palindrome date is ${prevDate.day}-${prevDate.month}-${prevDate.year}, you missed by ${ctr2} days.`;
                 },3000)
 
             } else {
+                loader.innerHTML='<img src="./src/loader.gif" />'
+                resultDiv.innerText="";
                 setTimeout(()=>{
+                    loader.innerText =""
                     monkeyEmoji.classList.remove('hide')
                     happyFace.classList.add('hide')
                     resultDiv.innerText = `The nearest palindrome date is ${nextDate.day}-${nextDate.month}-${nextDate.year}, you missed by ${ctr1} days.`;
@@ -49,7 +56,11 @@ function resultHandler(e) {
             }
 
         } else {
+            loader.innerHTML='<img src="./src/loader.gif" />'
+            resultDiv.innerText="";
             setTimeout(() => {
+                loader.innerText =""
+
                monkeyEmoji.classList.add('hide')
                 happyFace.classList.remove('hide')
 
@@ -234,5 +245,3 @@ function previousPalindromeDate(date) {
         previousDate = getPreviousDate(previousDate);
     }
 }
-
-
